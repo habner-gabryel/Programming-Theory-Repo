@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Champion : Character
+public abstract class Champion : Character
 {
-    protected Weapon standardWeapon { get; private set; }
-    protected Weapon currentWeapon { get; private set; }
+    protected Weapon standardWeapon { get; set; }
+    protected Weapon currentWeapon { get; set; }
 
     void LateUpdate()
     {
@@ -25,9 +25,16 @@ public class Champion : Character
         if (Input.GetKey(KeyCode.D)){
             direction += Vector3.right;
         }
-        
+        if (Input.GetMouseButtonDown(0))
+        {
+            if(currentWeapon != null) {
+                
+            } else {
+                standardWeapon.Attack();
+            }
+        }
+
         transform.position += direction * forceMovementSpeed * Time.deltaTime;
 
     }
-
 }

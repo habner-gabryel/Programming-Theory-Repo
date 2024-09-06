@@ -1,12 +1,8 @@
-using System;
+using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using UnityEngine;
 
-namespace Programming-Theory-Repo.Assets.Scripts.Interfaces
+public interface IAttack
 {
-    public interface IAttack
-    {
-        void Attack(Weapon weapon);
-    }
+    public void Attack();
 }
