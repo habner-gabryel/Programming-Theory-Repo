@@ -13,6 +13,12 @@ public class CameraController : MonoBehaviour
         sensitivity = 1.4F;
         distance = 4F;
         height = 2F;
+
+        if (Screen.fullScreen)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
     }
     void LateUpdate()
     {

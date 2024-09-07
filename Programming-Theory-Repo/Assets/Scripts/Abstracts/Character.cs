@@ -12,10 +12,13 @@ public abstract class Character : MonoBehaviour
     protected Animator characterAnimation { get; set; }
     protected AudioSource characterDamageAudio { get; set; }
 
+    protected float rotationSpeed { get; set; }
+
     void Start()
     {
         characterRb = GetComponent<Rigidbody>();
         characterAnimation = GetComponent<Animator>();
         characterDamageAudio = GetComponent<AudioSource>();
+        rotationSpeed = 200F;
     }
 }

@@ -13,7 +13,6 @@ public class Knight : Champion
     }
 
     void Start() {
-
         standardWeapon = knightBaseWeapon;
     }
 }

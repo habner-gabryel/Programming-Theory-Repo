@@ -30,5 +30,5 @@ public abstract class Weapon : MonoBehaviour, IAttack
         calculatedDamage = damage * forceMultiplier;
     }
 
-    public abstract void Attack();
+    public abstract void Attack(Vector3 basePosition);
 }
