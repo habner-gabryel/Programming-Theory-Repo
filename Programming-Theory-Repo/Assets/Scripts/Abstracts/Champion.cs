@@ -21,6 +21,8 @@ public abstract class Champion : Character
             Vector3 moveDirection = transform.rotation * direction;
 
             transform.Translate(moveDirection * forceMovementSpeed * Time.deltaTime, Space.World);
+
+            standardWeapon.SetPosition(transform.position);
         }
 
         if (Input.GetMouseButtonDown(0))

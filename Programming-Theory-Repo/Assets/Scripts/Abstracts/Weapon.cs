@@ -12,7 +12,6 @@ public abstract class Weapon : MonoBehaviour, IAttack
     public float attackSpeed {get; protected set;}
     protected Rigidbody weaponRigidbody {get; set;}
 
-
     void Start()
     {
         weaponRigidbody = GetComponent<Rigidbody>();
@@ -30,5 +29,16 @@ public abstract class Weapon : MonoBehaviour, IAttack
         calculatedDamage = damage * forceMultiplier;
     }
 
-    public abstract void Attack(Vector3 basePosition);
+    public abstract void Attack(Vector3 position);
+
+    public void SetPosition(Vector3 position) {
+        transform.position = position;
+    }
+
+
+    protected void AutoDestroy() {
+        if(gameObject.CompareTag("Weapon")){
+            Destroy(gameObject);
+        }
+    }
 }

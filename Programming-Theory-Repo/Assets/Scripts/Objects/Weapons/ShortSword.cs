@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class ShortSword : Weapon
 {
+    private float initialAngleX { get; set; }
+    private float initialAngleY { get; set; }
+    private float initialAngleZ { get; set; }
+
     public ShortSword() {
         this.weaponName = "Short Sword";
         this.damage = 2;
@@ -12,56 +16,42 @@ public class ShortSword : Weapon
         this.attackSpeed = 5F;
     }
 
-    public override void Attack(Vector3 basePosition) {
-        StartCoroutine(Move(basePosition));
+    void Start(){
+        CalculateInitialAngle();
+        SetRotation();
     }
 
-    IEnumerator<object> Move(Vector3 basePosition) {
-        // Vector3 initialPosition = basePosition;
+    public override void Attack(Vector3 position) {
+        SetPosition(position);
+        StartCoroutine(Move());        
+    }
 
-        while(true) {
+    private void SetRotation() {
+        transform.rotation = Quaternion.Euler(initialAngleX, initialAngleY, initialAngleZ);
+    }
 
-            transform.rotation = Quaternion.Euler(90, transform.rotation.y + angleAttack/2, 0);
+    private void CalculateInitialAngle() {
+        initialAngleX = 120F;
+        initialAngleY = 0F;
+        initialAngleZ = transform.rotation.z - (angleAttack/2);
+    }
 
-            Vector3 direcaoObjeto = transform.forward;
-            
-            Vector3 direcaoAlvo = new Vector3(90, transform.rotation.y - angleAttack, 0);
+    IEnumerator<object> Move() {
+        float lastAngleZ = initialAngleZ + angleAttack;
+        float actualAngleZ = initialAngleZ;
 
-            float angulo = Vector3.Angle(direcaoObjeto, direcaoAlvo);
-
-            while(angulo > 0) {
-                transform.Rotate(0, -10, 0);
-            }
-
-            // if(angulo > 0) {
-            //     for(float i = direcaoObjeto.y; i > direcaoAlvo.y;){
-            //         i -= 5F;
-            //     }
-            // }
-
-            
-            yield return null;
+        while(actualAngleZ < lastAngleZ) {
+            yield return new WaitForSeconds(0.02f);
+            transform.Rotate(0, 0, 5F);
+            actualAngleZ += 5F;
         }
 
-        // while (Vector3.Distance(transform.position, basePosition) > 0.1f) {
-        //     // Calcula a direção aleatória, mas garante que o movimento seja em relação à basePosition
-        //     Vector3 direction = basePosition;
-        //     direction.y = 0;
-        //     direction = Quaternion.Euler(0, 90, 0) * direction;
-
-        //     weaponRigidbody.AddForce(direction.normalized * attackSpeed, ForceMode.VelocityChange);
-
-        //     // Verifica a distância em relação à posição inicial
-        //     if (Vector3.Distance(transform.position, initialPosition) > range) {
-        //         break;
-        //     }
-
-
-        //     // // Calcula a direção para a basePosition
-        //     // Vector3 directionToBase = basePosition - transform.position;
-        //     // C.AddForce(directionToBase.normalized * attackSpeed, ForceMode.VelocityChange);
-        //     yield return null;
-        // }
+        if(actualAngleZ == lastAngleZ) {
+            yield return new WaitForSeconds(1.8f);
+            AutoDestroy();
+        }
+        
+        yield return null;
     }
 
 }

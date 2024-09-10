@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IAttack
 {
-    public void Attack(Vector3 basePosition);
+    public void Attack(Vector3 position);
 }

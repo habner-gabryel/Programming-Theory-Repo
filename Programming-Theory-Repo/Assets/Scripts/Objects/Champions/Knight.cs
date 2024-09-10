@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Knight : Champion
 {
-    public Weapon knightBaseWeapon;
+    public GameObject knightBaseWeapon;
     public Knight() {
         this.characterName = "Knight";
         this.maxLife = 5;
@@ -13,6 +13,9 @@ public class Knight : Champion
     }
 
     void Start() {
-        standardWeapon = knightBaseWeapon;
+
+        Instantiate(knightBaseWeapon, transform.position, transform.rotation);
+
+        standardWeapon = knightBaseWeapon.GetComponent<Weapon>();
     }
 }

@@ -12,7 +12,7 @@ public class CameraController : MonoBehaviour
     void Start(){
         sensitivity = 1.4F;
         distance = 4F;
-        height = 2F;
+        height = 1.3F;
 
         if (Screen.fullScreen)
         {
