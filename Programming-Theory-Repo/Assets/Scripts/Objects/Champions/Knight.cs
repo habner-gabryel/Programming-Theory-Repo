@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Knight : Champion
 {
+    // INHERITANCE”
     public GameObject knightBaseWeapon;
     public Knight() {
         this.characterName = "Knight";

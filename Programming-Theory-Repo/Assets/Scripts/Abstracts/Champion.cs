@@ -2,8 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// ABSTRACTION”
 public abstract class Champion : Character
 {
+    // INHERITANCE”
+    // ENCAPSULATION”
     protected Weapon standardWeapon { get; set; }
     protected Weapon currentWeapon { get; set; }
 

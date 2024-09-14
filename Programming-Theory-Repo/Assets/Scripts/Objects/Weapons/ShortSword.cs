@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ShortSword : Weapon
 {
+    // ENCAPSULATION”
     private float initialAngleX { get; set; }
     private float initialAngleY { get; set; }
     private float initialAngleZ { get; set; }
@@ -21,6 +22,7 @@ public class ShortSword : Weapon
         SetRotation();
     }
 
+    // POLYMORPHISM”
     public override void Attack(Vector3 position) {
         SetPosition(position);
         StartCoroutine(Move());        

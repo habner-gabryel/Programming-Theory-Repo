@@ -4,6 +4,7 @@ using UnityEngine;
 
 public abstract class Weapon : MonoBehaviour, IAttack
 {
+    // ENCAPSULATION”
     public string weaponName {get; protected set;}
     public float damage {get; protected set;}
     private float calculatedDamage {get; set;}
@@ -29,6 +30,7 @@ public abstract class Weapon : MonoBehaviour, IAttack
         calculatedDamage = damage * forceMultiplier;
     }
 
+    // ABSTRACTION”
     public abstract void Attack(Vector3 position);
 
     public void SetPosition(Vector3 position) {
